@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="/js/react-with-addons.js"></script>
+		<script type="text/javascript" src="/js/jquery-2.0.2.min.js"></script>
+		<script type="text/javascript" src="/js/react.min.js"></script>
+		<script type="text/javascript" src="/js/JSXTransformer.js"></script>
+		<script type="text/jsx" src="/js/todo.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	</head>
 	<body>
-		<br/>
+	<div class="row">
+		<div class="col-md-4 col-md-push-3">
+			<div id="example"></div>
+		</div>
+	</div>
 		<div class="row">
 			<div class="col-md-4 col-md-push-3">
 				<div id="task-list">
 					<div class="head panel panel-primary">
 						<div class="panel-heading">
-							<h1 clss="lead">TODO LIST</h1>
+							<h1 class="lead">TODO LIST</h1>
 						</div>
 					</div>
 					<div class="panel-body">
@@ -66,6 +73,5 @@
 			</div>
 
 		</div>
-
 	</body>
 </html>
