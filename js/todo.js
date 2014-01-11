@@ -32,6 +32,47 @@ $(function() {
 			});
 		},
 
+		removeHandler: function(obj) {
+			items = this.state.items;
+			_.remove(items, {id: obj.id});
+			this.setState({
+				items: items
+			})
+		},
+
+		editHandler: function(obj) {
+			items = this.state.items;
+			index = _.findIndex(items, {id: obj.id});
+			item = items[index];
+			item.is_enable = true;
+			items[index] = item;
+			this.setState({
+				items: items
+			})
+		},
+
+		updateHandler: function(obj) {
+			items = this.state.items;
+			index = _.findIndex(items, {id: obj.id});
+			item = items[index];
+			item.is_enable = false;
+			items[index] = item;
+			this.setState({
+				items: items
+			})
+		},
+
+		itemChangeHandler: function(obj, e) {
+			items = this.state.items;
+			index = _.findIndex(items, {id: obj.id});
+			item = items[index];
+			item.text = e.target.value
+			items[index] = item;
+			this.setState({
+				items: items
+			})
+		},
+
 		head: function() {
 			return (
 				<div className="head panel panel-primary">
@@ -64,13 +105,13 @@ $(function() {
 								if (item.is_enable) {
 									return (
 										<li className="panel lead clearfix">
-											{this.enable_item(item.text)}
+											{this.enable_item(item)}
 										</li>
 									)
 								} else {
 									return (
 										<li className="panel lead clearfix">
-											{this.disable_item(item.text)}
+											{this.disable_item(item)}
 										</li>
 									)
 								}
@@ -84,7 +125,7 @@ $(function() {
 			return (
 				<div className="form-inline">
 					<div className="col-sm-9">
-						<input type="text" className="form-control" value={item.text} />
+						<input type="text" className="form-control" onChange={this.itemChangeHandler.bind(this, item)} value={item.text} />
 					</div>
 					<div className="btn-group pull-right">
 						{this.button_ok(item)}
@@ -106,36 +147,30 @@ $(function() {
 				);
 		},
 
-		button_pencil: function() {
+		button_pencil: function(item) {
 			return (
-				<button type="button" className="btn btn-primary btn-sm">
+				<button type="button" className="btn btn-primary btn-sm" onClick={this.editHandler.bind(this, item)}>
 					<span className="glyphicon glyphicon-pencil"></span>
 				</button>
 			);
 		},
 
-		button_remove: function() {
+		button_remove: function(item) {
 			return (
-				<button type="button" className="btn btn-warning btn-sm">
-					<span className="glyphicon glyphicon-remove" onClick={this.removeItemHandler}></span>
+				<button type="button" className="btn btn-warning btn-sm" onClick={this.removeHandler.bind(this, item)}>
+					<span className="glyphicon glyphicon-remove"></span>
 				</button>
 			);
 		},
 
-		button_ok: function() {
+		button_ok: function(item) {
 			return (
-				<button type="button" class="btn btn-primary btn-sm">
-					<span class="glyphicon glyphicon-ok"></span>
+				<button type="button" className="btn btn-primary btn-sm" onClick={this.updateHandler.bind(this, item)}>
+					<span className="glyphicon glyphicon-ok"></span>
 				</button>
 			);
 		},
 
-		item: function() {
-			return (
-				<li className="panel lead clearfix">
-				</li>
-				);
-		},
 		render: function() {
 			return (
 				<div id="task-list">
