@@ -8,4 +8,4 @@ Worshop app. Used
 
 Released ToDo list.
 
-![Try react screen](https://github.com/seliverstov-maxim/try_react/blob/master/prtsc/main.jpeg 'Try react screen')
+![Try react screen](https://raw2.github.com/seliverstov-maxim/try_react/master/prtsc/main.jpeg 'Try react screen')
