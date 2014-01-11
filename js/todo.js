@@ -80,31 +80,27 @@ $(function() {
 			);
 		},
 
-		enable_item: function(text) {
+		enable_item: function(item) {
 			return (
 				<div className="form-inline">
 					<div className="col-sm-9">
-						<input type="text" className="form-control" value={text} />
+						<input type="text" className="form-control" value={item.text} />
 					</div>
 					<div className="btn-group pull-right">
-						<button type="button" className="btn btn-primary btn-sm">
-							<span className="glyphicon glyphicon-ok"></span>
-						</button>
-						<button type="button" className="btn btn-warning btn-sm">
-							<span className="glyphicon glyphicon-remove"></span>
-						</button>
+						{this.button_ok(item)}
+						{this.button_remove(item)}
 					</div>
 				</div>
 			);
 		},
 
-		disable_item: function(text) {
+		disable_item: function(item) {
 			return (
 				<div>
-					<span className="col-sm-8">{text}</span>
+					<span className="col-sm-8">{item.text}</span>
 					<div className="btn-group pull-right">
-											{this.button_pencil()}
-											{this.button_remove()}
+						{this.button_pencil(item)}
+						{this.button_remove(item)}
 					</div>
 				</div>
 				);
@@ -121,7 +117,7 @@ $(function() {
 		button_remove: function() {
 			return (
 				<button type="button" className="btn btn-warning btn-sm">
-					<span className="glyphicon glyphicon-remove"></span>
+					<span className="glyphicon glyphicon-remove" onClick={this.removeItemHandler}></span>
 				</button>
 			);
 		},
