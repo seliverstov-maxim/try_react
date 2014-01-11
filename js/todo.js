@@ -14,6 +14,16 @@ $(function() {
 			};
 		},
 
+		changeHandler: function(e) {
+			this.setState({
+				text: e.target.value
+			})
+		},
+
+		submitHandler: function(e) {
+			e.preventDefault();
+		},
+
 		head: function() {
 			return (
 				<div className="head panel panel-primary">
@@ -29,9 +39,9 @@ $(function() {
 				<div className="panel-body">
 					<form className="form-inline" role="form">
 						<div className="col-sm-9">
-							<input type="text" className="form-control" placeholder="Enter task" />
+							<input className="form-control" onChange={this.changeHandler} value={this.state.text} type="text" placeholder="Enter task" />
 						</div>
-						<button type="submit" className="btn btn-primary pull-right">Create</button>
+						<button className="btn btn-primary pull-right" onClick={this.submitHandler}>Create</button>
 					</form>
 				</div>
 			);
