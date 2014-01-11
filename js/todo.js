@@ -22,6 +22,14 @@ $(function() {
 
 		submitHandler: function(e) {
 			e.preventDefault();
+			newItem = {id: this.state.count, text: this.state.text, is_enable: false};
+			newCount = this.state.count + 1;
+			newItems = this.state.items.concat(newItem);
+			this.setState({
+				items: newItems,
+				count: newCount,
+				text: ''
+			});
 		},
 
 		head: function() {
@@ -56,13 +64,13 @@ $(function() {
 								if (item.is_enable) {
 									return (
 										<li className="panel lead clearfix">
-											{this.enable_item()}
+											{this.enable_item(item.text)}
 										</li>
 									)
 								} else {
 									return (
 										<li className="panel lead clearfix">
-											{this.disable_item()}
+											{this.disable_item(item.text)}
 										</li>
 									)
 								}
@@ -72,11 +80,11 @@ $(function() {
 			);
 		},
 
-		enable_item: function() {
+		enable_item: function(text) {
 			return (
 				<div className="form-inline">
 					<div className="col-sm-9">
-						<input type="text" className="form-control" value="Some task"/>
+						<input type="text" className="form-control" value={text} />
 					</div>
 					<div className="btn-group pull-right">
 						<button type="button" className="btn btn-primary btn-sm">
@@ -90,10 +98,10 @@ $(function() {
 			);
 		},
 
-		disable_item: function() {
+		disable_item: function(text) {
 			return (
 				<div>
-					<span className="col-sm-8">Some task</span>
+					<span className="col-sm-8">{text}</span>
 					<div className="btn-group pull-right">
 											{this.button_pencil()}
 											{this.button_remove()}
