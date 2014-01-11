@@ -3,15 +3,7 @@
 $(function() {
 	var tasklist = React.createClass({
 		getInitialState: function() {
-			return {
-				items: [
-					{id: 0, text: 'Some task', is_enable: false},
-					{id: 1, text: 'Some task', is_enable: true},
-					{id: 2, text: 'Some task', is_enable: false},
-				],
-				count: 0,
-				text: ''
-			};
+			return {items: [], count: 0, text: ''};
 		},
 
 		changeHandler: function(e) {
